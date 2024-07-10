@@ -3,8 +3,12 @@
 
 //titulo.innerHTML = 'Jogo do número secreto';
 
+let numeroLimite = 10;
+let listaDeNumerosSorteados = [];
+
 let tentativas = 1;
 let numeroSecreto = geraNumeroAleatorio();
+
 
 
 
@@ -51,8 +55,21 @@ function verificarChute() {
 
 
 function geraNumeroAleatorio(){
-   return parseInt(Math.random()* 10 + 1); 
+   let numeroEscolhido =  parseInt(Math.random()* numeroLimite + 1); 
+   let quantidadeDeElementosNalista = listaDeNumerosSorteados.length;
 
+   if (quantidadeDeElementosNalista == numeroLimite){
+    listaDeNumerosSorteados = [];
+   }
+
+   if (listaDeNumerosSorteados.includes(numeroEscolhido)){
+        return geraNumeroAleatorio();
+   }
+   else{
+        
+        listaDeNumerosSorteados.push(numeroEscolhido);
+        return  numeroEscolhido;
+   }
 }
 
 
